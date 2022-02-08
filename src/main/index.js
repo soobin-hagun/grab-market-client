@@ -9,10 +9,11 @@ function MainPage() {
   React.useEffect(function () {
     axios
       .get(
-        "https://341cf269-c712-4751-a587-2c7fd1b972ec.mock.pstmn.io/products"
+        "https://5adac971-7e43-45b8-a475-2e64d6dbde8d.mock.pstmn.io/products"
       )
       .then(function (result) {
         const products = result.data.products;
+        console.log(result.data);
         setProducts(products);
       })
       .catch(function (error) {
@@ -22,21 +23,19 @@ function MainPage() {
 
   return (
     <div>
-      <div id="header">
-        <div id="header-area">
-          <img src="images/icons/logo.png" />
-        </div>
+      <div id="banner">
+        <img src="images/banners/banner1.png" />
       </div>
-      <div id="body">
-        <div id="banner">
-          <img src="images/banners/banner1.png" />
-        </div>
-        <h1>판매되는 상품들</h1>
-        <div id="product-list">
-          {products.map(function (product, index) {
-            return (
-              <div className="product-card">
-                <Link className="product-link" to={(`/product/${index}`)}>
+      <h1>판매되는 상품들</h1>
+      <div id="product-list">
+        {products.map(function (product, index) {
+          return (
+            <div className="product-card" key={index}>
+              <Link
+                style={{ color: "inherit" }}
+                className="product-link"
+                to={`/products/${product.id}`}
+              >
                 <div>
                   <img className="product-img" src={product.imageUrl} />
                 </div>
@@ -51,13 +50,11 @@ function MainPage() {
                     <span>{product.seller}</span>
                   </div>
                 </div>
-                </Link>
-              </div>
-            );
+              </Link>
+            </div>
+          );
           })}
         </div>
-      </div>
-      <div id="footer"></div>
     </div>
   );
 }
