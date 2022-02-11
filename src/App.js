@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import "antd/dist/antd.css";
 import "./App.css";
 import MainPageComponent from "./main";
@@ -5,8 +7,6 @@ import {
   Switch,
   Route,
   BrowserRouter,
-  Link,
-  useHistory,
 } from "react-router-dom";
 import UploadPage from "./upload";
 import ProductPage from "./product";
